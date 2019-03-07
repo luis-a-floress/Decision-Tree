@@ -4,6 +4,7 @@ from sklearn.tree import DecisionTreeClassifier
 from sklearn.metrics import accuracy_score
 from sklearn.metrics import classification_report
 from sklearn.model_selection import cross_val_predict
+from sklearn.model_selection import cross_val_score
 from sklearn.metrics import confusion_matrix
 from sklearn.metrics import precision_score, recall_score
 
@@ -34,7 +35,11 @@ def cal_accuracy(x_train, y_train, tree_forest):
     print("Accuracy:", round(accuracy, 2, ), "%", end = "\n"*2)
 
     # Validacion Cruzada
-    cross_predictions = cross_val_predict(tree_forest, x_train, y_train, cv=3)
+    cross_predictions = cross_val_score(tree_forest, x_train, y_train, cv=5)
+    print("Cross Validation:\n", cross_predictions, end = "\n"*2)
+
+    #Matrix de confusion
+    cross_predictions = cross_val_predict(tree_forest, x_train, y_train, cv=5)
     print("Confusion Matrix:\n", confusion_matrix(y_train, cross_predictions), end = "\n"*2)
 
     # Precision and Recall
