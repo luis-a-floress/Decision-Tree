@@ -5,8 +5,5 @@ def readData(file: str):
     return data 
 
 def writeData(file: str, passengerId, survived):
-    data = pandas.DataFrame({
-            "PassengerId": passengerId,
-            "Survived": survived
-        })
+    data = pandas.DataFrame({"PassengerId": passengerId, "Survived": survived})
     data.to_csv(file, index=False)
